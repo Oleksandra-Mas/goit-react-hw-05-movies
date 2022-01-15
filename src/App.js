@@ -1,23 +1,25 @@
-import logo from './logo.svg';
+import { Routes, Route, Link } from 'react-router-dom';
 import './App.css';
+import { Cast } from './components/Cast/Cast';
+import { HomePage } from './components/HomePage/HomePage';
+import { MoviesDetailsPage } from './components/MovieDetailsPage/MoviesDetailsPage';
+import { MoviesPage } from './components/MoviesPage/MoviesPage';
+import { Reviews } from './components/Reviews/Reviews';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Link to="/">Home</Link>
+      <Link to="/movies">Movies</Link>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="movies" element={<MoviesPage />} />
+        <Route path="movies/:movieId" element={<MoviesDetailsPage />}>
+          <Route path="cast" element={<Cast />} />
+          <Route path="reviews" element={<Reviews />} />
+        </Route>
+        <Route path="*" element={<HomePage />} />
+      </Routes>
     </div>
   );
 }
