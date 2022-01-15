@@ -11,6 +11,12 @@ export const getTrending = async () => {
   return response.data;
 };
 
+export const searchMovie = async query => {
+  const url = `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}&page=1&include_adult=false`;
+  const result = await axios.get(url);
+  return result.data.results;
+};
+
 export const getMovieById = async id => {
   const url = `${BASE_URL}/movie/${id}?api_key=${API_KEY}`;
   const { data } = await axios.get(url);

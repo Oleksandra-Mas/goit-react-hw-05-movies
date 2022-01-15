@@ -1,10 +1,4 @@
-import {
-  useParams,
-  useNavigate,
-  useLocation,
-  NavLink,
-  Outlet,
-} from 'react-router-dom';
+import { useParams, useNavigate, NavLink, Outlet } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getMovieById } from '../../services/apiService';
 export const MoviesDetailsPage = () => {
@@ -12,7 +6,6 @@ export const MoviesDetailsPage = () => {
   const [movie, setMovie] = useState(null);
 
   const navigate = useNavigate();
-  let { pathname } = useLocation();
 
   useEffect(() => {
     getMovieById(movieId)
