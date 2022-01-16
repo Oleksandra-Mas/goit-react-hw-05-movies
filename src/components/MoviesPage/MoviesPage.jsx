@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import styled from 'styled-components';
 
@@ -38,8 +38,11 @@ const Button = styled.button`
 
 export const MoviesPage = () => {
   const [filter, setFilter] = useState('');
-  const [movies, setMovies] = useState('');
+  const [movies, setMovies] = useState(null);
   const navigate = useNavigate();
+  const { search } = useLocation();
+
+  const query = new URLSearchParams(search)?.get('query');
 
   const handleInputChange = event => {
     const value = event.target.value.toLowerCase();
@@ -60,6 +63,25 @@ export const MoviesPage = () => {
       });
     setFilter('');
   };
+
+  useEffect(() => {
+    if (filter || filter === query) {
+      return;
+    }
+    if (!query) {
+      setMovies(null);
+      return;
+    }
+    searchMovie(query)
+      .then(movies => {
+        setMovies(movies);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+    setFilter('');
+  }, [query, filter]);
+
   return (
     <>
       <form onSubmit={handleSubmit}>

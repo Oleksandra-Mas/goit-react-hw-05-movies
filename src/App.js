@@ -1,4 +1,4 @@
-import { Routes, Route, NavLink } from 'react-router-dom';
+import { Routes, Route, NavLink, useMatch } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import styled from 'styled-components';
@@ -25,13 +25,20 @@ const Header = styled.div`
 `;
 
 function App() {
+  const idMatch = useMatch('/movies/:movieId');
+  const castMatch = useMatch('/movies/:movieId/cast');
+  const reviewMatch = useMatch('/movies/:movieId/reviews');
   return (
     <div className="App">
       <Header>
         <NavLink end to="/">
           Home
         </NavLink>
-        <NavLink end to="/movies">
+        <NavLink
+          end
+          className={(idMatch || castMatch || reviewMatch) && 'active'}
+          to="/movies"
+        >
           Movies
         </NavLink>
       </Header>
