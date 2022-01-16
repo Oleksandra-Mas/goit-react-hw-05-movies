@@ -53,6 +53,7 @@ export const MoviesPage = () => {
     searchMovie(filter)
       .then(movies => {
         setMovies(movies);
+        navigate(`/movies?query=${filter}`);
       })
       .catch(err => {
         console.log(err);
