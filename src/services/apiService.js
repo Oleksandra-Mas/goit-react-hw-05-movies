@@ -41,7 +41,6 @@ export const getMovieReviewsById = async id => {
   const reviews = results.map(({ author, content }) => {
     return { author, content };
   });
-  console.log(reviews);
   return reviews;
 };
 

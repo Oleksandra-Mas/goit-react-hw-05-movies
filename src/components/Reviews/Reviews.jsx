@@ -7,7 +7,6 @@ export const Reviews = () => {
   useEffect(() => {
     getMovieReviewsById(movieId)
       .then(reviews => {
-        console.log(reviews);
         setReviews(reviews);
       })
       .catch(err => {

@@ -1,7 +1,19 @@
 import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import styled from 'styled-components';
 
 import { getTrending } from '../../services/apiService';
+
+const TrendingSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 300px;
+`;
+
+const TrendingHeader = styled.h1`
+  align-self: center;
+`;
 
 export const HomePage = () => {
   const [movies, setMovies] = useState([]);
@@ -15,8 +27,8 @@ export const HomePage = () => {
   }, []);
 
   return (
-    <>
-      <h1>Trending today</h1>
+    <TrendingSection>
+      <TrendingHeader>Trending today</TrendingHeader>
       {movies.length > 0 && (
         <ul>
           {movies.map(({ id, title }) => {
@@ -28,6 +40,6 @@ export const HomePage = () => {
           })}
         </ul>
       )}
-    </>
+    </TrendingSection>
   );
 };

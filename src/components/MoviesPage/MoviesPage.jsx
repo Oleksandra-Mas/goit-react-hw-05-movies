@@ -1,6 +1,36 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import styled from 'styled-components';
+
 import { searchMovie } from '../../services/apiService';
+
+const MoviesList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  margin: 20px auto 0;
+  max-width: 300px;
+`;
+
+const Input = styled.input`
+  border-radius: 0 0.5rem 0.5rem 0;
+  height: 30px;
+  border: 1px solid grey;
+  outline: none;
+  :hover {
+    border: 1px solid blue;
+  }
+`;
+
+const Button = styled.button`
+  border-radius: 0.5rem 0 0 0.5rem;
+  height: 34px;
+  border: 1px solid grey;
+  background-color: grey;
+  cursor: pointer;
+  color: white;
+`;
+
 export const MoviesPage = () => {
   const [filter, setFilter] = useState('');
   const [movies, setMovies] = useState('');
@@ -11,7 +41,7 @@ export const MoviesPage = () => {
   const handleSubmit = event => {
     event.preventDefault();
     if (filter.trim() === '') {
-      return alert('Empty input');
+      return toast.error('Empty input');
     }
     searchMovie(filter)
       .then(movies => {
@@ -25,8 +55,8 @@ export const MoviesPage = () => {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <button type="submit">Search</button>
-        <input
+        <Button type="submit">Search</Button>
+        <Input
           type="text"
           autoComplete="off"
           autoFocus
@@ -35,13 +65,13 @@ export const MoviesPage = () => {
         />
       </form>
       {movies?.length > 0 && (
-        <ul>
+        <MoviesList>
           {movies.map(({ title, id }) => (
             <li key={id}>
               <NavLink to={`/movies/${id}`}>{title}</NavLink>
             </li>
           ))}
-        </ul>
+        </MoviesList>
       )}
       {!movies || (movies?.length === 0 && <p>No movies found</p>)}
     </>
