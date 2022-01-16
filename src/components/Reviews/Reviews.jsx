@@ -13,7 +13,7 @@ const Author = styled.span`
   margin-right: 0.5rem;
 `;
 
-export const Reviews = () => {
+export default function Reviews() {
   const movieId = useOutletContext();
   const [reviews, setReviews] = useState(null);
   useEffect(() => {
@@ -43,4 +43,4 @@ export const Reviews = () => {
       {!reviews || (reviews?.length === 0 && <p>No reviews found</p>)}
     </>
   );
-};
+}

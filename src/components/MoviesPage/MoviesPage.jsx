@@ -36,7 +36,7 @@ const Button = styled.button`
   }
 `;
 
-export const MoviesPage = () => {
+export default function MoviesPage() {
   const [filter, setFilter] = useState('');
   const [movies, setMovies] = useState(null);
   const navigate = useNavigate();
@@ -106,4 +106,4 @@ export const MoviesPage = () => {
       {!movies || (movies?.length === 0 && <p>No movies found</p>)}
     </>
   );
-};
+}

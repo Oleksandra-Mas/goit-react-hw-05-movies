@@ -15,7 +15,7 @@ const TrendingHeader = styled.h1`
   align-self: center;
 `;
 
-export const HomePage = () => {
+export default function HomePage() {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
@@ -42,4 +42,4 @@ export const HomePage = () => {
       )}
     </TrendingSection>
   );
-};
+}

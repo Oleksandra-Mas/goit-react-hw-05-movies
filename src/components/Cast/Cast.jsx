@@ -15,7 +15,7 @@ const Name = styled.p`
   font-size: 20px;
 `;
 
-export const Cast = () => {
+export default function Cast() {
   const movieId = useOutletContext();
   const [cast, setCast] = useState(null);
   useEffect(() => {
@@ -46,4 +46,4 @@ export const Cast = () => {
       {!cast && <p>No actors found</p>}
     </>
   );
-};
+}

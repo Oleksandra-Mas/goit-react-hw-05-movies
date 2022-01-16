@@ -1,14 +1,17 @@
 import { Routes, Route, NavLink, useMatch } from 'react-router-dom';
+import { lazy, Suspense } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import styled from 'styled-components';
 
 import './App.css';
-import { Cast } from './components/Cast/Cast';
-import { HomePage } from './components/HomePage/HomePage';
-import { MoviesDetailsPage } from './components/MovieDetailsPage/MoviesDetailsPage';
-import { MoviesPage } from './components/MoviesPage/MoviesPage';
-import { Reviews } from './components/Reviews/Reviews';
+const HomePage = lazy(() => import('./components/HomePage/HomePage.jsx'));
+const MoviesPage = lazy(() => import('./components/MoviesPage/MoviesPage'));
+const MoviesDetailsPage = lazy(() =>
+  import('./components/MovieDetailsPage/MoviesDetailsPage'),
+);
+const Cast = lazy(() => import('./components/Cast/Cast'));
+const Reviews = lazy(() => import('./components/Reviews/Reviews'));
 
 const Header = styled.div`
   font-size: 20px;
@@ -43,13 +46,55 @@ function App() {
         </NavLink>
       </Header>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="movies" element={<MoviesPage />} />
-        <Route path="movies/:movieId" element={<MoviesDetailsPage />}>
-          <Route path="cast" element={<Cast />} />
-          <Route path="reviews" element={<Reviews />} />
+        <Route
+          path="/"
+          element={
+            <Suspense fallback={<div>Loading...</div>}>
+              <HomePage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="movies"
+          element={
+            <Suspense fallback={<div>Loading...</div>}>
+              <MoviesPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="movies/:movieId"
+          element={
+            <Suspense fallback={<div>Loading...</div>}>
+              <MoviesDetailsPage />
+            </Suspense>
+          }
+        >
+          <Route
+            path="cast"
+            element={
+              <Suspense fallback={<div>Loading...</div>}>
+                <Cast />
+              </Suspense>
+            }
+          />
+          <Route
+            path="reviews"
+            element={
+              <Suspense fallback={<div>Loading...</div>}>
+                <Reviews />
+              </Suspense>
+            }
+          />
         </Route>
-        <Route path="*" element={<HomePage />} />
+        <Route
+          path="*"
+          element={
+            <Suspense fallback={<div>Loading...</div>}>
+              <HomePage />
+            </Suspense>
+          }
+        />
       </Routes>
       <ToastContainer
         position="top-right"

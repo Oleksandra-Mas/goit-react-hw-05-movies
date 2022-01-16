@@ -44,7 +44,7 @@ const Button = styled.button`
   }
 `;
 
-export const MoviesDetailsPage = () => {
+export default function MoviesDetailsPage() {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
 
@@ -86,4 +86,4 @@ export const MoviesDetailsPage = () => {
       )}
     </>
   );
-};
+}
