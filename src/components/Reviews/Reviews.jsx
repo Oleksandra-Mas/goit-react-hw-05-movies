@@ -1,6 +1,18 @@
 import { useOutletContext } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import styled from 'styled-components';
+
 import { getMovieReviewsById } from '../../services/apiService';
+
+const ReviewItem = styled.li`
+  margin-bottom: 50px;
+`;
+
+const Author = styled.span`
+  font-weight: 700;
+  margin-right: 0.5rem;
+`;
+
 export const Reviews = () => {
   const movieId = useOutletContext();
   const [reviews, setReviews] = useState(null);
@@ -18,10 +30,13 @@ export const Reviews = () => {
       {reviews?.length > 0 && (
         <ul>
           {reviews.map(({ author, content }) => (
-            <li key={author}>
-              <p>Author:{author}</p>
+            <ReviewItem key={author}>
+              <p>
+                <Author>Author:</Author>
+                {author}
+              </p>
               <p>{content}</p>
-            </li>
+            </ReviewItem>
           ))}
         </ul>
       )}

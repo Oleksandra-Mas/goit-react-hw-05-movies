@@ -13,7 +13,7 @@ import { Reviews } from './components/Reviews/Reviews';
 const Header = styled.div`
   font-size: 20px;
   line-height: 1.23;
-  padding: 20px;
+  padding: 0 20px 20px;
   text-align: center;
   color: black;
   a + a {

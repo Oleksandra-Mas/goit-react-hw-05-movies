@@ -29,6 +29,10 @@ const Button = styled.button`
   background-color: grey;
   cursor: pointer;
   color: white;
+  :hover {
+    background-color: white;
+    color: grey;
+  }
 `;
 
 export const MoviesPage = () => {

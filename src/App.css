@@ -2,4 +2,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 20px 60px;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+li {
+  align-self: center;
+  text-align: center;
 }

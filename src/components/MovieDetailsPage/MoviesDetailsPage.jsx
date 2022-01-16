@@ -1,6 +1,47 @@
 import { useParams, useNavigate, NavLink, Outlet } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import styled from 'styled-components';
+
 import { getMovieById } from '../../services/apiService';
+
+const MovieItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px auto 0;
+  max-width: 800px;
+`;
+
+const DetailsList = styled.ul`
+  display: flex;
+  font-size: 20px;
+  line-height: 1.23;
+  padding: 20px;
+  justify-content: center;
+  color: black;
+  li + li {
+    margin-left: 20px;
+  }
+  a:hover {
+    color: blue;
+  }
+`;
+
+const Button = styled.button`
+  align-self: flex-start;
+  border-radius: 0.5rem;
+  height: 34px;
+  border: 1px solid grey;
+  background-color: grey;
+  cursor: pointer;
+  color: white;
+
+  :hover {
+    background-color: white;
+    color: grey;
+  }
+`;
+
 export const MoviesDetailsPage = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
@@ -17,10 +58,10 @@ export const MoviesDetailsPage = () => {
 
   return (
     <>
-      <button onClick={() => navigate(-1)}>go back</button>
+      <Button onClick={() => navigate(-1)}>go back</Button>
       {movie && (
-        <>
-          <img height={200} src={movie.poster_path} alt="poster" />
+        <MovieItem>
+          <img width={200} src={movie.poster_path} alt="poster" />
           <h1>
             {movie.title}({movie.release_year})
           </h1>
@@ -30,16 +71,16 @@ export const MoviesDetailsPage = () => {
           <h2>Genres</h2>
           <p>{movie.genres.join(' ')}</p>
           <h3>Additional information</h3>
-          <ul>
+          <DetailsList>
             <li>
               <NavLink to={`/movies/${movieId}/cast`}>Cast</NavLink>
             </li>
             <li>
               <NavLink to={`/movies/${movieId}/reviews`}>Reviews</NavLink>
             </li>
-          </ul>
+          </DetailsList>
           <Outlet context={movieId} />
-        </>
+        </MovieItem>
       )}
     </>
   );
