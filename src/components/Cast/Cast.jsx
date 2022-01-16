@@ -43,7 +43,7 @@ export default function Cast() {
           ))}
         </ul>
       )}
-      {!cast && <p>No actors found</p>}
+      {!cast || (cast?.length === 0 && <p>No actors found</p>)}
     </>
   );
 }
