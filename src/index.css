@@ -25,3 +25,7 @@ a {
 a:hover {
   color: blue;
 }
+
+.active {
+  color: rgb(187, 0, 103);
+}

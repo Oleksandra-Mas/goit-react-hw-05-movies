@@ -17,3 +17,7 @@ li {
   align-self: center;
   text-align: center;
 }
+
+.selected {
+  color: red;
+}

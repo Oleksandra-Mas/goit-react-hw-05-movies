@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import styled from 'styled-components';
 
@@ -39,6 +39,8 @@ const Button = styled.button`
 export const MoviesPage = () => {
   const [filter, setFilter] = useState('');
   const [movies, setMovies] = useState('');
+  const navigate = useNavigate();
+
   const handleInputChange = event => {
     const value = event.target.value.toLowerCase();
     setFilter(value);

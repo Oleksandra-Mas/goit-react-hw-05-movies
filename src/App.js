@@ -1,4 +1,4 @@
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route, NavLink } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import styled from 'styled-components';
@@ -28,8 +28,12 @@ function App() {
   return (
     <div className="App">
       <Header>
-        <Link to="/">Home</Link>
-        <Link to="/movies">Movies</Link>
+        <NavLink end to="/">
+          Home
+        </NavLink>
+        <NavLink end to="/movies">
+          Movies
+        </NavLink>
       </Header>
       <Routes>
         <Route path="/" element={<HomePage />} />
