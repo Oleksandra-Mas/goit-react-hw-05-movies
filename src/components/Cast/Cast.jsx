@@ -1,10 +1,20 @@
 import { useOutletContext } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import {
-  getMovieById,
-  getMovieCreditsById,
-  getMovieReviewsById,
-} from '../../services/apiService';
+import styled from 'styled-components';
+
+import { getMovieCreditsById } from '../../services/apiService';
+
+const Character = styled.span`
+  font-weight: 700;
+  margin-right: 0.5rem;
+`;
+
+const Name = styled.p`
+  font-weight: 700;
+  font-style: italic;
+  font-size: 20px;
+`;
+
 export const Cast = () => {
   const movieId = useOutletContext();
   const [cast, setCast] = useState(null);
@@ -24,8 +34,11 @@ export const Cast = () => {
           {cast.map(({ name, character, path }) => (
             <li key={name}>
               <img height={200} src={path} alt="poster" />
-              <p>{name}</p>
-              <p>Character: {character}</p>
+              <Name>{name}</Name>
+              <p>
+                <Character>Character:</Character>
+                {character}
+              </p>
             </li>
           ))}
         </ul>

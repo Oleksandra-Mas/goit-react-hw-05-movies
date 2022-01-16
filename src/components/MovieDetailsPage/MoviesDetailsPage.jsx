@@ -35,6 +35,8 @@ const Button = styled.button`
   background-color: grey;
   cursor: pointer;
   color: white;
+  font-weight: 700;
+  padding: 0.5rem;
 
   :hover {
     background-color: white;

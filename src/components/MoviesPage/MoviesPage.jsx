@@ -29,6 +29,7 @@ const Button = styled.button`
   background-color: grey;
   cursor: pointer;
   color: white;
+  font-weight: 500;
   :hover {
     background-color: white;
     color: grey;
