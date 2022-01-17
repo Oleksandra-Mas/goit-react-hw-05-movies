@@ -88,7 +88,7 @@ function App() {
           />
         </Route>
         <Route
-          path="/*"
+          path="*"
           element={
             <Suspense fallback={<div>Loading...</div>}>
               <HomePage />
