@@ -1,5 +1,5 @@
-import { Routes, Route, NavLink, useMatch } from 'react-router-dom';
-import { lazy, Suspense } from 'react';
+import { Routes, Route, NavLink, useMatch, Navigate } from 'react-router-dom';
+import { lazy } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import styled from 'styled-components';
@@ -46,55 +46,13 @@ function App() {
         </NavLink>
       </Header>
       <Routes>
-        <Route
-          path="/"
-          element={
-            <Suspense fallback={<div>Loading...</div>}>
-              <HomePage />
-            </Suspense>
-          }
-        />
-        <Route
-          path="movies"
-          element={
-            <Suspense fallback={<div>Loading...</div>}>
-              <MoviesPage />
-            </Suspense>
-          }
-        />
-        <Route
-          path="movies/:movieId"
-          element={
-            <Suspense fallback={<div>Loading...</div>}>
-              <MoviesDetailsPage />
-            </Suspense>
-          }
-        >
-          <Route
-            path="cast"
-            element={
-              <Suspense fallback={<div>Loading...</div>}>
-                <Cast />
-              </Suspense>
-            }
-          />
-          <Route
-            path="reviews"
-            element={
-              <Suspense fallback={<div>Loading...</div>}>
-                <Reviews />
-              </Suspense>
-            }
-          />
+        <Route path="/" element={<HomePage />} />
+        <Route path="movies" element={<MoviesPage />} />
+        <Route path="movies/:movieId" element={<MoviesDetailsPage />}>
+          <Route path="cast" element={<Cast />} />
+          <Route path="reviews" element={<Reviews />} />
         </Route>
-        <Route
-          path="*"
-          element={
-            <Suspense fallback={<div>Loading...</div>}>
-              <HomePage />
-            </Suspense>
-          }
-        />
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
       <ToastContainer
         position="top-right"
